@@ -5,8 +5,8 @@
 # Please instead update this file by running `bin/tapioca dsl User`.
 
 class User
-  sig { params(name: String, age: Integer).void }
-  def initialize(name: T.unsafe(nil), age: T.unsafe(nil)); end
+  sig { params(name: String, age: Integer, tags: T::Array[String]).void }
+  def initialize(name: T.unsafe(nil), age: T.unsafe(nil), tags: T.unsafe(nil)); end
 
   sig { returns(Integer) }
   def age; end
@@ -14,8 +14,11 @@ class User
   sig { returns(String) }
   def name; end
 
+  sig { returns(T::Array[String]) }
+  def tags; end
+
   class << self
-    sig { params(name: Symbol, type: Class, required: T::Boolean).void }
-    def attribute(name, type: T.unsafe(nil), required: T.unsafe(nil)); end
+    sig { params(name: Symbol, type: Class, array_of: Class, optional: T::Boolean).void }
+    def attribute(name, type: T.unsafe(nil), array_of: T.unsafe(nil), optional: T.unsafe(nil)); end
   end
 end
